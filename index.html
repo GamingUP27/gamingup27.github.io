@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============ PRIMARY SEO META ============ -->
+<title>GamingUP27 – Free Bitrate Calculator, Click Speed Test (CPS) &amp; Mouse DPI Checker for Gamers &amp; Streamers</title>
+<meta name="description" content="Free gaming toolkit by GamingUP27: calculate the perfect streaming bitrate for OBS, Twitch, YouTube Live, Facebook Gaming and Kick, test your clicks per second (CPS) with the click speed test, and check your mouse DPI — all in one place.">
+<meta name="keywords" content="bitrate calculator, streaming bitrate calculator, obs bitrate calculator, upload speed to bitrate calculator, twitch bitrate calculator, youtube live bitrate calculator, obs stream settings calculator, best bitrate for streaming, live stream bitrate chart, gaming stream settings, facebook gaming bitrate, kick streaming bitrate, click speed test, cps test, clicks per second test, mouse dpi checker, dpi calculator, gaming mouse dpi test, GamingUP27">
+<meta name="author" content="GamingUP27">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="language" content="English">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://gamingup27.github.io/bitrate-calculator/">
+
+<!-- ============ OPEN GRAPH / FACEBOOK ============ -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="GamingUP27 – Bitrate Calculator, Click Speed Test &amp; Mouse DPI Checker">
+<meta property="og:description" content="Calculate your ideal streaming bitrate, test your clicks per second, and check your mouse DPI — three free gaming tools in one place, by GamingUP27.">
+<meta property="og:url" content="https://gamingup27.github.io/bitrate-calculator/">
+<meta property="og:site_name" content="GamingUP27">
+<meta property="og:locale" content="en_US">
+
+<!-- ============ TWITTER CARD ============ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GamingUP27 – Bitrate Calculator, Click Speed Test &amp; DPI Checker">
+<meta name="twitter:description" content="Free bitrate calculator, CPS click speed test and mouse DPI checker for gamers and streamers. Built by GamingUP27.">
+
+<!-- ============ STRUCTURED DATA (JSON-LD) ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GamingUP27 Gaming Toolkit",
+  "url": "https://gamingup27.github.io/bitrate-calculator/",
+  "description": "Free gaming toolkit with a streaming bitrate calculator for OBS, Twitch, YouTube Live, Facebook Gaming and Kick, a clicks-per-second (CPS) click speed test, and a mouse DPI checker.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "GamingUP27",
+    "sameAs": [
+      "https://www.youtube.com/@gamingup27-yt",
+      "https://www.facebook.com/gamingup27",
+      "https://www.instagram.com/gamingup27/",
+      "https://discord.gg/GYM3m2enW"
+    ]
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #060810;
+    --bg-panel: #0d1120;
+    --bg-panel-alt: #10152a;
+    --bg-raised: #141a30;
+    --cyan: #00e5ff;
+    --purple: #a855f7;
+    --pink: #ff2ec4;
+    --amber: #ffb020;
+    --green: #39ff9d;
+    --text: #eaf0ff;
+    --muted: #7c88ad;
+    --border: rgba(0, 229, 255, 0.18);
+    --border-strong: rgba(0, 229, 255, 0.4);
+    --radius: 14px;
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(0,229,255,0.08), transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(168,85,247,0.10), transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(255,46,196,0.06), transparent 45%);
+  }
+
+  /* scanline texture overlay */
+  body::before{
+    content:"";
+    position: fixed;
+    inset:0;
+    pointer-events:none;
+    z-index: 1;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.012) 0px,
+      rgba(255,255,255,0.012) 1px,
+      transparent 2px,
+      transparent 3px
+    );
+    opacity: 0.5;
+  }
+
+  a{ color: inherit; text-decoration:none; }
+  ul{ list-style:none; }
+
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ============ HEADER ============ */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    background: rgba(6,8,16,0.75);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 16px 24px;
+  }
+  .logo{
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 1px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .logo-mark{
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--cyan), var(--purple));
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-display);
+    font-weight:900;
+    color:#04060c;
+    font-size: 16px;
+    box-shadow: 0 0 18px rgba(0,229,255,0.5);
+  }
+  .logo span{ color: var(--cyan); }
+  .nav-links{ display:flex; gap: 28px; font-weight:600; font-size:15px; color: var(--muted); }
+  .nav-links a:hover{ color: var(--cyan); }
+  @media (max-width: 720px){ .nav-links{ display:none; } }
+
+  /* ============ HERO ============ */
+  .hero{
+    position: relative;
+    z-index: 2;
+    padding: 90px 24px 70px;
+    text-align:center;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border:1px solid var(--border-strong);
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(0,229,255,0.06);
+    margin-bottom: 26px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    border-radius:50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: blink 1.6s infinite;
+  }
+  @keyframes blink{ 0%,100%{opacity:1} 50%{opacity:.25} }
+
+  h1{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(32px, 6vw, 64px);
+    line-height: 1.08;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  h1 .grad{
+    background: linear-gradient(90deg, var(--cyan), var(--purple) 55%, var(--pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 22px rgba(0,229,255,0.25));
+  }
+  .hero p.sub{
+    max-width: 640px;
+    margin: 22px auto 0;
+    color: var(--muted);
+    font-size: 19px;
+    font-weight: 500;
+  }
+  .hero-cta{
+    margin-top: 34px;
+    display:inline-flex;
+    gap:14px;
+    flex-wrap: wrap;
+    justify-content:center;
+  }
+  .btn{
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 30px;
+    border-radius: 10px;
+    cursor:pointer;
+    border: none;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    color: #04060c;
+    box-shadow: 0 8px 30px rgba(0,229,255,0.25);
+  }
+  .btn-primary:hover{ box-shadow: 0 10px 36px rgba(168,85,247,0.4); }
+  .btn-ghost{
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); }
+
+  /* ============ HERO TOOL NAV GRID ============ */
+  .tool-nav-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    max-width: 760px;
+    margin: 46px auto 0;
+  }
+  @media (max-width: 720px){ .tool-nav-grid{ grid-template-columns: 1fr; } }
+  .tool-nav-card{
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 16px;
+    text-align:center;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .tool-nav-card:hover{
+    transform: translateY(-5px);
+    border-color: var(--border-strong);
+    box-shadow: 0 10px 30px rgba(0,229,255,0.12);
+  }
+  .tool-nav-icon{ font-size: 28px; margin-bottom: 10px; }
+  .tool-nav-name{ font-family: var(--font-display); font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: .5px; }
+  .tool-nav-desc{ color: var(--muted); font-size: 13px; margin-top: 6px; }
+
+  /* ============ SECTION SHELL ============ */
+  section{ position: relative; z-index:2; padding: 70px 0; }
+  .section-head{ text-align:center; max-width: 680px; margin: 0 auto 44px; }
+  .section-head .tag{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--purple);
+    text-transform:uppercase;
+  }
+  .section-head h2{
+    font-family: var(--font-display);
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 800;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+  .section-head p{ color: var(--muted); margin-top: 12px; font-size: 17px; }
+
+  /* ============ CALCULATOR ============ */
+  .calc-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+  @media (max-width: 880px){ .calc-grid{ grid-template-columns: 1fr; } }
+
+  .panel{
+    background: linear-gradient(180deg, var(--bg-panel), var(--bg-panel-alt));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .panel::after{
+    content:"";
+    position:absolute; inset:0;
+    border-radius: var(--radius);
+    padding:1px;
+    background: linear-gradient(135deg, rgba(0,229,255,0.4), transparent 40%, rgba(168,85,247,0.3));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events:none;
+  }
+
+  label{
+    display:block;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform:uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+  label:first-child{ margin-top:0; }
+
+  .input-row{ display:flex; gap:10px; }
+  input[type="number"]{
+    flex:1;
+    background: #060810;
+    border: 1px solid var(--border-strong);
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 700;
+    padding: 14px 16px;
+    border-radius: 10px;
+    outline:none;
+    width: 100%;
+  }
+  input[type="number"]:focus{ box-shadow: 0 0 0 3px rgba(0,229,255,0.25); border-color: var(--cyan); }
+
+  select{
+    background:#060810;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-weight:600;
+    font-size: 16px;
+    padding: 14px 12px;
+    border-radius: 10px;
+    outline:none;
+  }
+
+  .btn-group{ display:flex; gap:10px; flex-wrap:wrap; }
+  .chip{
+    flex:1;
+    min-width: 100px;
+    text-align:center;
+    padding: 12px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 14px;
+    cursor:pointer;
+    transition: all .15s ease;
+  }
+  .chip small{ display:block; font-family: var(--font-mono); font-weight:500; font-size:11px; margin-top:3px; opacity:.7;}
+  .chip.active{
+    color: #04060c;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    border-color: transparent;
+    box-shadow: 0 4px 18px rgba(0,229,255,0.3);
+  }
+  .chip:hover:not(.active){ border-color: var(--cyan); color: var(--cyan); }
+
+  /* ---- HUD result panel ---- */
+  .hud{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .gauge-wrap{ position: relative; width: 220px; height:220px; margin: 6px auto 8px; }
+  .gauge-wrap svg{ width:100%; height:100%; transform: rotate(-90deg); }
+  .gauge-bg{ fill:none; stroke: rgba(255,255,255,0.06); stroke-width: 14; }
+  .gauge-fg{
+    fill:none;
+    stroke: url(#gaugeGradient);
+    stroke-width: 14;
+    stroke-linecap: round;
+    transition: stroke-dashoffset .6s cubic-bezier(.2,.9,.3,1);
+    filter: drop-shadow(0 0 10px rgba(0,229,255,0.55));
+  }
+  .gauge-center{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .gauge-value{
+    font-family: var(--font-mono);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--cyan);
+    line-height:1;
+  }
+  .gauge-unit{ font-size:13px; color: var(--muted); letter-spacing:2px; margin-top:6px; text-transform:uppercase; }
+
+  .tier-badge{
+    margin-top: 18px;
+    display:inline-block;
+    padding: 9px 20px;
+    border-radius: 999px;
+    background: rgba(168,85,247,0.14);
+    border: 1px solid rgba(168,85,247,0.5);
+    color: #d9b8ff;
+    font-weight:700;
+    font-size: 15px;
+    font-family: var(--font-display);
+  }
+
+  .breakdown{
+    width: 100%;
+    margin-top: 24px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .stat{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 8px;
+  }
+  .stat .num{ font-family: var(--font-mono); font-weight:700; color: var(--text); font-size: 18px; }
+  .stat .lbl{ font-size: 11px; color: var(--muted); letter-spacing:1px; text-transform:uppercase; margin-top:4px; }
+
+  .platform-note{
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--muted);
+    border-top: 1px dashed var(--border);
+    padding-top: 16px;
+    width:100%;
+  }
+  .platform-note b{ color: var(--amber); }
+
+  /* ============ CLICK SPEED TEST ============ */
+  .click-target{
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: radial-gradient(circle at 35% 30%, var(--cyan), var(--purple) 60%, var(--pink) 100%);
+    color: #04060c;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 40px rgba(0,229,255,0.35), inset 0 0 30px rgba(255,255,255,0.15);
+    transition: transform .08s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .click-target:active{ transform: scale(0.94); }
+  .click-target.pulsing{ animation: pulse-ring 1.4s ease infinite; }
+  @keyframes pulse-ring{
+    0%{ box-shadow: 0 0 40px rgba(0,229,255,0.35), inset 0 0 30px rgba(255,255,255,0.15); }
+    50%{ box-shadow: 0 0 60px rgba(168,85,247,0.55), inset 0 0 30px rgba(255,255,255,0.2); }
+    100%{ box-shadow: 0 0 40px rgba(0,229,255,0.35), inset 0 0 30px rgba(255,255,255,0.15); }
+  }
+
+  /* ============ DPI CHECKER ============ */
+  .dpi-steps{ color: var(--muted); font-size: 15px; line-height: 1.9; }
+  .dpi-steps b{ color: var(--text); }
+  #dpiTrackBtn.tracking{
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    box-shadow: 0 8px 30px rgba(255,46,196,0.3);
+  }
+
+  /* ============ REFERENCE TABLE ============ */
+  .table-wrap{
+    overflow-x:auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  table{ width:100%; border-collapse: collapse; min-width: 620px; }
+  thead th{
+    font-family: var(--font-display);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: rgba(0,229,255,0.06);
+    padding: 16px 18px;
+    text-align:left;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td{
+    padding: 15px 18px;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 15.5px;
+  }
+  tbody tr:hover{ background: rgba(0,229,255,0.04); }
+  tbody td.mono{ font-family: var(--font-mono); color: var(--green); }
+
+  /* ============ PLATFORM CARDS ============ */
+  .platform-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 880px){ .platform-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 520px){ .platform-grid{ grid-template-columns: 1fr; } }
+  .platform-card{
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align:center;
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .platform-card:hover{ transform: translateY(-4px); border-color: var(--border-strong); }
+  .platform-card .pf-name{ font-family: var(--font-display); font-weight:800; font-size:16px; margin-bottom:8px; }
+  .platform-card .pf-max{ font-family: var(--font-mono); color: var(--cyan); font-size: 22px; font-weight:700; }
+  .platform-card .pf-lbl{ color: var(--muted); font-size: 12px; text-transform:uppercase; letter-spacing:1px; margin-top:4px; }
+
+  /* ============ FAQ / GUIDE ============ */
+  .guide{ max-width: 820px; margin: 0 auto; }
+  .guide h3{
+    font-family: var(--font-display);
+    font-size: 19px;
+    margin-top: 28px;
+    color: var(--cyan);
+  }
+  .guide p, .guide li{ color: #c4cbe6; margin-top: 10px; font-size: 16.5px; }
+  .guide ul{ list-style: disc; padding-left: 22px; }
+  .guide li{ margin-top: 6px; }
+
+  .faq-item{
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: var(--bg-panel);
+    overflow:hidden;
+  }
+  .faq-q{
+    padding: 18px 22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .faq-q .icon{ color: var(--cyan); font-family: var(--font-mono); transition: transform .2s ease; }
+  .faq-item.open .icon{ transform: rotate(45deg); }
+  .faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition: max-height .3s ease, padding .3s ease;
+    padding: 0 22px;
+    color: var(--muted);
+    font-size: 15.5px;
+  }
+  .faq-item.open .faq-a{ max-height: 300px; padding: 0 22px 20px; }
+
+  /* ============ FOOTER / SOCIAL ============ */
+  footer{
+    position: relative; z-index:2;
+    border-top: 1px solid var(--border);
+    padding: 60px 0 40px;
+    text-align:center;
+  }
+  footer .foot-title{
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight:800;
+    text-transform: uppercase;
+  }
+  footer .foot-sub{ color: var(--muted); margin-top:8px; font-size:15px; }
+
+  .social-row{
+    display:flex;
+    justify-content:center;
+    gap: 18px;
+    margin: 34px 0;
+    flex-wrap: wrap;
+  }
+  .social-btn{
+    width: 58px; height:58px;
+    border-radius: 16px;
+    display:flex; align-items:center; justify-content:center;
+    border: 1px solid var(--border-strong);
+    background: rgba(255,255,255,0.03);
+    position:relative;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .social-btn svg{ width:26px; height:26px; fill: var(--text); transition: fill .2s ease; }
+  .social-btn:hover{ transform: translateY(-5px) scale(1.05); }
+  .social-btn.yt:hover{ border-color:#ff2e2e; box-shadow: 0 8px 26px rgba(255,46,46,0.35); }
+  .social-btn.yt:hover svg{ fill:#ff2e2e; }
+  .social-btn.fb:hover{ border-color:#1877f2; box-shadow: 0 8px 26px rgba(24,119,242,0.35); }
+  .social-btn.fb:hover svg{ fill:#1877f2; }
+  .social-btn.ig:hover{ border-color:#e1306c; box-shadow: 0 8px 26px rgba(225,48,108,0.35); }
+  .social-btn.ig:hover svg{ fill:#e1306c; }
+  .social-btn.dc:hover{ border-color:#5865f2; box-shadow: 0 8px 26px rgba(88,101,242,0.35); }
+  .social-btn.dc:hover svg{ fill:#5865f2; }
+
+  .foot-links{ display:flex; justify-content:center; gap:22px; flex-wrap:wrap; font-size:14px; color: var(--muted); margin-bottom: 18px; }
+  .foot-links a:hover{ color: var(--cyan); }
+  .copyright{ color: #4a5378; font-size: 13px; font-family: var(--font-mono); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="logo"><span class="logo-mark">UP</span>Gaming<span>UP27</span></div>
+    <nav class="nav-links">
+      <a href="#calculator">Bitrate Calculator</a>
+      <a href="#clicktest">Click Speed Test</a>
+      <a href="#dpichecker">DPI Checker</a>
+      <a href="#chart">Bitrate Chart</a>
+      <a href="#guide">Guide</a>
+      <a href="#connect">Connect</a>
+    </nav>
+    <a href="#calculator" class="btn btn-primary" style="padding:10px 20px; font-size:14px;">Open Tools</a>
+  </div>
+</header>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap">
+    <div class="eyebrow">Free &bull; Instant &bull; No Signup</div>
+    <h1>3 Free <span class="grad">Gaming Tools</span><br>Built For Gamers &amp; Streamers</h1>
+    <p class="sub">Calculate your ideal streaming bitrate, test your click speed (CPS), and check your mouse DPI — everything a gamer or streamer needs, in one place, by GamingUP27.</p>
+    <div class="hero-cta">
+      <a href="#calculator" class="btn btn-primary">⚡ Calculate My Bitrate</a>
+      <a href="#chart" class="btn btn-ghost">View Bitrate Chart</a>
+    </div>
+
+    <div class="tool-nav-grid">
+      <a href="#calculator" class="tool-nav-card">
+        <div class="tool-nav-icon">📡</div>
+        <div class="tool-nav-name">Bitrate Calculator</div>
+        <div class="tool-nav-desc">Get your ideal OBS streaming bitrate</div>
+      </a>
+      <a href="#clicktest" class="tool-nav-card">
+        <div class="tool-nav-icon">🖱️</div>
+        <div class="tool-nav-name">Click Speed Test</div>
+        <div class="tool-nav-desc">Test your clicks per second (CPS)</div>
+      </a>
+      <a href="#dpichecker" class="tool-nav-card">
+        <div class="tool-nav-icon">🎯</div>
+        <div class="tool-nav-name">Mouse DPI Checker</div>
+        <div class="tool-nav-desc">Estimate your mouse's real DPI</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ CALCULATOR ============ -->
+  <section id="calculator" class="wrap">
+    <div class="section-head">
+      <div class="tag">// Live Stream Bitrate Calculator</div>
+      <h2>Find Your Perfect Bitrate</h2>
+      <p>Your recommended OBS / streaming software bitrate settings, calculated from your real upload speed.</p>
+    </div>
+
+    <div class="calc-grid">
+      <!-- INPUT PANEL -->
+      <div class="panel">
+        <label for="uploadSpeed">Your Upload Speed</label>
+        <div class="input-row">
+          <input type="number" id="uploadSpeed" placeholder="e.g. 10" min="0" step="0.1" value="10">
+          <select id="speedUnit">
+            <option value="mbps">Mbps</option>
+            <option value="kbps">Kbps</option>
+          </select>
+        </div>
+
+        <label>Safety Buffer</label>
+        <div class="btn-group" id="safetyGroup">
+          <button type="button" class="chip" data-factor="2.0">Rock Solid<small>2.0x — unstable net</small></button>
+          <button type="button" class="chip active" data-factor="1.5">Balanced<small>1.5x — recommended</small></button>
+          <button type="button" class="chip" data-factor="1.3">Max Push<small>1.3x — stable fiber</small></button>
+        </div>
+
+        <label>Streaming Platform</label>
+        <select id="platformSelect" style="width:100%;">
+          <option value="custom">Custom / No Cap</option>
+          <option value="youtube">YouTube Live</option>
+          <option value="twitch">Twitch</option>
+          <option value="facebook">Facebook Gaming</option>
+          <option value="kick">Kick</option>
+        </select>
+
+        <label>Audio Bitrate</label>
+        <select id="audioSelect" style="width:100%;">
+          <option value="128">128 kbps</option>
+          <option value="160" selected>160 kbps</option>
+          <option value="192">192 kbps</option>
+          <option value="320">320 kbps</option>
+        </select>
+      </div>
+
+      <!-- RESULT PANEL -->
+      <div class="panel hud">
+        <svg width="0" height="0">
+          <defs>
+            <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00e5ff"/>
+              <stop offset="55%" stop-color="#a855f7"/>
+              <stop offset="100%" stop-color="#ff2ec4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 160 160">
+            <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
+            <circle class="gauge-fg" id="gaugeArc" cx="80" cy="80" r="70" stroke-dasharray="440" stroke-dashoffset="440"></circle>
+          </svg>
+          <div class="gauge-center">
+            <div class="gauge-value" id="videoBitrateOut">0</div>
+            <div class="gauge-unit">Mbps Video</div>
+          </div>
+        </div>
+
+        <div class="tier-badge" id="tierBadge">Enter your speed to begin</div>
+
+        <div class="breakdown">
+          <div class="stat"><div class="num" id="statVideo">0.0</div><div class="lbl">Video Mbps</div></div>
+          <div class="stat"><div class="num" id="statAudio">0.16</div><div class="lbl">Audio Mbps</div></div>
+          <div class="stat"><div class="num" id="statTotal">0.0</div><div class="lbl">Total Mbps</div></div>
+        </div>
+
+        <div class="platform-note" id="platformNote">Select a platform above to see its bitrate cap and get a clamped, safe recommendation.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REFERENCE CHART ============ -->
+  <section id="chart" class="wrap">
+    <div class="section-head">
+      <div class="tag">// Reference</div>
+      <h2>Streaming Bitrate Chart By Resolution</h2>
+      <p>Use this chart alongside the calculator to match your target resolution and frame rate.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Resolution</th><th>Frame Rate</th><th>Recommended Bitrate</th><th>Min. Upload Speed Needed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>4K UHD (3840×2160)</td><td>30 fps</td><td class="mono">15 – 25 Mbps</td><td>25 – 35 Mbps</td></tr>
+          <tr><td>1440p QHD (2560×1440)</td><td>60 fps</td><td class="mono">9 – 13 Mbps</td><td>14 – 18 Mbps</td></tr>
+          <tr><td>1080p Full HD</td><td>60 fps</td><td class="mono">6 – 9 Mbps</td><td>9 – 13 Mbps</td></tr>
+          <tr><td>1080p Full HD</td><td>30 fps</td><td class="mono">4.5 – 6 Mbps</td><td>7 – 9 Mbps</td></tr>
+          <tr><td>720p HD</td><td>60 fps</td><td class="mono">4 – 6 Mbps</td><td>6 – 8 Mbps</td></tr>
+          <tr><td>720p HD</td><td>30 fps</td><td class="mono">2.5 – 4 Mbps</td><td>4 – 6 Mbps</td></tr>
+          <tr><td>480p SD</td><td>30 fps</td><td class="mono">1 – 2.5 Mbps</td><td>2 – 4 Mbps</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ PLATFORM LIMITS ============ -->
+  <section id="platforms" class="wrap">
+    <div class="section-head">
+      <div class="tag">// Platform Limits</div>
+      <h2>Bitrate Caps By Platform</h2>
+      <p>Every streaming platform enforces its own maximum bitrate. GamingUP27 Bitrate Calculator accounts for these automatically.</p>
+    </div>
+    <div class="platform-grid">
+      <div class="platform-card"><div class="pf-name">YouTube Live</div><div class="pf-max">51 Mbps</div><div class="pf-lbl">4K60 max cap</div></div>
+      <div class="platform-card"><div class="pf-name">Twitch</div><div class="pf-max">8.5 Mbps</div><div class="pf-lbl">Partner max cap</div></div>
+      <div class="platform-card"><div class="pf-name">Facebook Gaming</div><div class="pf-max">10 Mbps</div><div class="pf-lbl">1080p60 max cap</div></div>
+      <div class="platform-card"><div class="pf-name">Kick</div><div class="pf-max">8 Mbps</div><div class="pf-lbl">Recommended cap</div></div>
+    </div>
+  </section>
+
+  <!-- ============ CLICK SPEED TEST ============ -->
+  <section id="clicktest" class="wrap">
+    <div class="section-head">
+      <div class="tag">// Click Speed Test</div>
+      <h2>CPS Click Speed Test</h2>
+      <p>Test how many clicks per second (CPS) you can do. Pick a duration, hit the button as fast as you can, and see your score.</p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="panel">
+        <label>Test Duration</label>
+        <div class="btn-group" id="cpsDurationGroup">
+          <button type="button" class="chip" data-time="1">1s</button>
+          <button type="button" class="chip active" data-time="5">5s</button>
+          <button type="button" class="chip" data-time="10">10s</button>
+          <button type="button" class="chip" data-time="60">60s</button>
+        </div>
+
+        <div style="text-align:center; margin-top:30px;">
+          <button id="clickTargetBtn" class="click-target">CLICK ME</button>
+        </div>
+        <p style="text-align:center; margin-top:18px; color:var(--muted); font-size:14px;">Timer starts on your first click.</p>
+        <div style="text-align:center; margin-top:14px;">
+          <button class="btn btn-ghost" id="cpsResetBtn" style="padding:10px 22px; font-size:13px;">Reset</button>
+        </div>
+      </div>
+
+      <div class="panel hud">
+        <div class="gauge-wrap" style="width:190px;height:190px;">
+          <svg viewBox="0 0 160 160">
+            <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
+            <circle class="gauge-fg" id="cpsArc" cx="80" cy="80" r="70" stroke-dasharray="440" stroke-dashoffset="0"></circle>
+          </svg>
+          <div class="gauge-center">
+            <div class="gauge-value" id="cpsTimeLeft">5.0</div>
+            <div class="gauge-unit">Seconds Left</div>
+          </div>
+        </div>
+        <div class="tier-badge" id="cpsTierBadge">Click the button to start</div>
+        <div class="breakdown">
+          <div class="stat"><div class="num" id="cpsClicks">0</div><div class="lbl">Clicks</div></div>
+          <div class="stat"><div class="num" id="cpsScore">0.0</div><div class="lbl">CPS</div></div>
+          <div class="stat"><div class="num" id="cpsBest">0.0</div><div class="lbl">Best CPS</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DPI CHECKER ============ -->
+  <section id="dpichecker" class="wrap">
+    <div class="section-head">
+      <div class="tag">// Mouse DPI Checker</div>
+      <h2>Mouse DPI Checker</h2>
+      <p>Estimate your mouse's DPI (dots per inch) by tracking on-screen movement against a real physical distance.</p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="panel">
+        <p class="dpi-steps">
+          <b>1.</b> Click <b>Start Tracking</b> below.<br>
+          <b>2.</b> Physically move your mouse in one straight line across your desk or mousepad (a ruler helps).<br>
+          <b>3.</b> Click <b>Stop Tracking</b> when you're done moving.<br>
+          <b>4.</b> Enter the real distance you moved the mouse and hit <b>Calculate DPI</b>.
+        </p>
+
+        <div style="margin-top:22px;">
+          <button id="dpiTrackBtn" class="btn btn-primary" style="width:100%;">▶ Start Tracking</button>
+        </div>
+
+        <label>Physical Distance Moved</label>
+        <div class="input-row">
+          <input type="number" id="dpiDistance" placeholder="e.g. 4" min="0" step="0.1">
+          <select id="dpiUnit">
+            <option value="in">inches</option>
+            <option value="cm">cm</option>
+          </select>
+        </div>
+
+        <button id="dpiCalcBtn" class="btn btn-ghost" style="width:100%; margin-top:18px;">Calculate DPI</button>
+      </div>
+
+      <div class="panel hud">
+        <div class="gauge-value" style="font-size:46px;" id="dpiResult">—</div>
+        <div class="gauge-unit">Estimated DPI</div>
+        <div class="tier-badge" id="dpiTier">Track your movement first</div>
+        <div class="breakdown">
+          <div class="stat"><div class="num" id="dpiPixels">0</div><div class="lbl">Pixels Moved</div></div>
+          <div class="stat"><div class="num" id="dpiCommon">—</div><div class="lbl">Closest Preset</div></div>
+          <div class="stat"><div class="num" id="dpiStatus">Idle</div><div class="lbl">Tracker</div></div>
+        </div>
+        <div class="platform-note">This is a screen-pixel based estimate — OS pointer speed, acceleration and display scaling affect the result. For exact raw DPI, use your mouse manufacturer's software.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GUIDE / SEO CONTENT ============ -->
+  <section id="guide" class="wrap">
+    <div class="section-head">
+      <div class="tag">// Streaming Guide</div>
+      <h2>How Bitrate Calculation Works</h2>
+      <p>Everything you need to understand OBS bitrate settings and streaming quality.</p>
+    </div>
+    <div class="guide">
+      <h3>What is bitrate in live streaming?</h3>
+      <p>Bitrate is the amount of video and audio data sent to your streaming platform every second, measured in megabits per second (Mbps) or kilobits per second (Kbps). A higher bitrate generally means sharper, cleaner video — but it also demands more upload bandwidth. Setting the wrong bitrate is the most common reason for a stream that buffers, drops frames, or looks blurry.</p>
+
+      <h3>The bitrate calculator formula</h3>
+      <p>GamingUP27 Bitrate Calculator uses a simple, proven formula used by streamers on Twitch, YouTube Live, Facebook Gaming and Kick:</p>
+      <ul>
+        <li><b>Recommended Bitrate = Upload Speed ÷ Safety Buffer</b></li>
+        <li>Safety buffer of 1.5x–2x accounts for network fluctuation, packet loss and background bandwidth usage.</li>
+        <li>Audio bitrate (128–320 kbps) is calculated separately and added on top of video bitrate.</li>
+      </ul>
+
+      <h3>Why upload speed and not download speed?</h3>
+      <p>Streaming sends data from your device to the platform, so your <b>upload speed</b> is what matters — not download speed. Always test your real upload speed with a speed test tool before setting your OBS bitrate, since real-world speeds are often lower than what your ISP advertises.</p>
+
+      <h3>OBS bitrate settings tips</h3>
+      <ul>
+        <li>Use CBR (Constant Bitrate) rate control in OBS for the most stable stream on Twitch and YouTube.</li>
+        <li>Keyframe interval should be set to 2 seconds for best platform compatibility.</li>
+        <li>If your stream drops frames, lower your bitrate by 10–15% before changing resolution.</li>
+        <li>Wired ethernet connections are more stable for streaming than Wi-Fi.</li>
+      </ul>
+
+      <div style="margin-top:36px;">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>What bitrate should I use for 1080p60 streaming?</span><span class="icon">+</span></div>
+          <div class="faq-a"><p>For 1080p at 60fps, a bitrate between 6–9 Mbps is recommended by most platforms including Twitch and YouTube Live, provided your upload speed is at least 9–13 Mbps.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Why does Twitch limit bitrate to 8.5 Mbps?</span><span class="icon">+</span></div>
+          <div class="faq-a"><p>Twitch caps bitrate to keep streams watchable for viewers on slower connections worldwide and to manage server load, regardless of how fast your internet connection is.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Is a higher bitrate always better for streaming?</span><span class="icon">+</span></div>
+          <div class="faq-a"><p>No. Going above a platform's cap or your stable upload speed causes dropped frames and buffering for viewers. The goal is the highest bitrate your connection can sustain reliably, not the highest number possible.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>How do I test my real upload speed?</span><span class="icon">+</span></div>
+          <div class="faq-a"><p>Use a speed test tool such as Speedtest.net or Fast.com. Run it a few times at different times of day, and use the lowest result to calculate a safe streaming bitrate.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>What is a good clicks per second (CPS) score?</span><span class="icon">+</span></div>
+          <div class="faq-a"><p>Most people average around 5–7 clicks per second. Scores of 8–10 CPS are considered fast, and competitive clickers using techniques like jitter or butterfly clicking can reach 12+ CPS.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)"><span>Is the DPI checker 100% accurate?</span><span class="icon">+</span></div>
+          <div class="faq-a"><p>No tool running in a browser can read your mouse's raw hardware DPI directly. This checker gives a close estimate based on on-screen pixel movement versus real physical distance. For an exact reading, check your mouse manufacturer's official software.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer id="connect">
+  <div class="wrap">
+    <div class="foot-title">Join The GamingUP27 Community</div>
+    <div class="foot-sub">Streaming tips, gaming content and tool updates — follow along on every platform.</div>
+
+    <div class="social-row">
+      <a class="social-btn yt" href="https://www.youtube.com/@gamingup27-yt" target="_blank" rel="noopener" aria-label="GamingUP27 on YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
+      </a>
+      <a class="social-btn fb" href="https://www.facebook.com/gamingup27" target="_blank" rel="noopener" aria-label="GamingUP27 on Facebook">
+        <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+      </a>
+      <a class="social-btn ig" href="https://www.instagram.com/gamingup27/" target="_blank" rel="noopener" aria-label="GamingUP27 on Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.1 0 4.1.06 1.1.05 1.8.2 2.4.45a4.9 4.9 0 0 1 1.8 1.16 4.9 4.9 0 0 1 1.16 1.8c.25.6.4 1.3.45 2.4.05 1 .06 1.4.06 4.13s0 3.1-.06 4.13c-.05 1.1-.2 1.8-.45 2.4a4.9 4.9 0 0 1-1.16 1.8 4.9 4.9 0 0 1-1.8 1.16c-.6.25-1.3.4-2.4.45-1 .05-1.4.06-4.1.06s-3.1 0-4.13-.06c-1.1-.05-1.8-.2-2.4-.45a4.9 4.9 0 0 1-1.8-1.16 4.9 4.9 0 0 1-1.16-1.8c-.25-.6-.4-1.3-.45-2.4C2 15.1 2 14.7 2 12s0-3.1.06-4.13c.05-1.1.2-1.8.45-2.4a4.9 4.9 0 0 1 1.16-1.8A4.9 4.9 0 0 1 5.47.51c.6-.25 1.3-.4 2.4-.45C8.9 2 9.3 2 12 2Zm0 3.15A6.85 6.85 0 1 0 12 18.85 6.85 6.85 0 0 0 12 5.15Zm0 11.3A4.45 4.45 0 1 1 12 7.55a4.45 4.45 0 0 1 0 8.9ZM17.85 4.75a1.6 1.6 0 1 1 0 3.2 1.6 1.6 0 0 1 0-3.2Z"/></svg>
+      </a>
+      <a class="social-btn dc" href="https://discord.gg/GYM3m2enW" target="_blank" rel="noopener" aria-label="GamingUP27 on Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.3 4.4A18 18 0 0 0 15.9 3c-.2.4-.5 1-.6 1.4a17 17 0 0 0-5 0c-.2-.5-.4-1-.7-1.4a18 18 0 0 0-4.4 1.4C1.5 8.5.8 12.4 1.1 16.3a18.2 18.2 0 0 0 5.6 2.8c.4-.6.8-1.3 1.1-2a11 11 0 0 1-1.8-.9l.4-.3a12.8 12.8 0 0 0 11.2 0l.4.3c-.6.3-1.2.6-1.8.9.3.7.7 1.4 1.1 2a18.1 18.1 0 0 0 5.6-2.8c.4-4.5-.7-8.4-2.8-11.9ZM8.7 14c-.9 0-1.7-.9-1.7-1.9s.7-1.9 1.7-1.9 1.7.9 1.7 1.9-.8 1.9-1.7 1.9Zm6.6 0c-.9 0-1.7-.9-1.7-1.9s.7-1.9 1.7-1.9 1.7.9 1.7 1.9-.7 1.9-1.7 1.9Z"/></svg>
+      </a>
+    </div>
+
+    <div class="foot-links">
+      <a href="#calculator">Bitrate Calculator</a>
+      <a href="#chart">Bitrate Chart</a>
+      <a href="#guide">Streaming Guide</a>
+    </div>
+
+    <div class="copyright">© <span id="year"></span> GamingUP27 — Bitrate Calculator Tool. Built for streamers.</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- state ----
+  let safetyFactor = 1.5;
+
+  const speedInput = document.getElementById('uploadSpeed');
+  const unitSelect = document.getElementById('speedUnit');
+  const platformSelect = document.getElementById('platformSelect');
+  const audioSelect = document.getElementById('audioSelect');
+  const safetyGroup = document.getElementById('safetyGroup');
+
+  const gaugeArc = document.getElementById('gaugeArc');
+  const videoBitrateOut = document.getElementById('videoBitrateOut');
+  const tierBadge = document.getElementById('tierBadge');
+  const statVideo = document.getElementById('statVideo');
+  const statAudio = document.getElementById('statAudio');
+  const statTotal = document.getElementById('statTotal');
+  const platformNote = document.getElementById('platformNote');
+
+  const CIRCUMFERENCE = 2 * Math.PI * 70; // r=70
+
+  const tiers = [
+    { label: '4K UHD @30fps',    min: 13,  res: '3840×2160' },
+    { label: '1440p QHD @60fps', min: 9,   res: '2560×1440' },
+    { label: '1080p FHD @60fps', min: 6,   res: '1920×1080' },
+    { label: '1080p FHD @30fps', min: 4.5, res: '1920×1080' },
+    { label: '720p HD @60fps',   min: 4,   res: '1280×720' },
+    { label: '720p HD @30fps',   min: 2.5, res: '1280×720' },
+    { label: '480p SD @30fps',   min: 1,   res: '854×480' },
+  ];
+
+  const platformCaps = {
+    custom:   { max: Infinity, name: 'Custom',          note: 'No platform cap applied — showing your raw calculated bitrate.' },
+    youtube:  { max: 51,       name: 'YouTube Live',     note: 'YouTube Live supports up to 51 Mbps for 4K60. Recommended 1080p60 is around 9 Mbps.' },
+    twitch:   { max: 8.5,      name: 'Twitch',           note: 'Twitch caps bitrate at 8.5 Mbps for partners and 6 Mbps for non-partners.' },
+    facebook: { max: 10,       name: 'Facebook Gaming',  note: 'Facebook Gaming recommends a maximum of around 10 Mbps for 1080p60 streams.' },
+    kick:     { max: 8,        name: 'Kick',             note: 'Kick recommends staying at or below 8 Mbps for the most stable playback.' },
+  };
+
+  safetyGroup.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip) return;
+    [...safetyGroup.children].forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    safetyFactor = parseFloat(chip.dataset.factor);
+    calculate();
+  });
+
+  [speedInput, unitSelect, platformSelect, audioSelect].forEach(el => {
+    el.addEventListener('input', calculate);
+    el.addEventListener('change', calculate);
+  });
+
+  function calculate(){
+    let raw = parseFloat(speedInput.value);
+    if (isNaN(raw) || raw <= 0){
+      gaugeArc.style.strokeDashoffset = CIRCUMFERENCE;
+      videoBitrateOut.textContent = '0';
+      tierBadge.textContent = 'Enter your speed to begin';
+      statVideo.textContent = '0.0';
+      statTotal.textContent = '0.0';
+      return;
+    }
+
+    let uploadMbps = unitSelect.value === 'kbps' ? raw / 1000 : raw;
+    let audioMbps = parseInt(audioSelect.value, 10) / 1000;
+
+    let totalBudget = uploadMbps / safetyFactor;
+    let videoBitrate = Math.max(totalBudget - audioMbps, 0.2);
+
+    // apply platform cap
+    let platform = platformCaps[platformSelect.value];
+    let capped = false;
+    if (videoBitrate + audioMbps > platform.max){
+      videoBitrate = Math.max(platform.max - audioMbps, 0.2);
+      capped = true;
+    }
+
+    let total = videoBitrate + audioMbps;
+
+    // find resolution tier
+    let tier = tiers.find(t => videoBitrate >= t.min);
+    let tierLabel = tier ? `${tier.label} — ${tier.res}` : 'Below minimum — try lowering resolution or fps';
+
+    // update gauge (scale max visual = 25 Mbps video)
+    let pct = Math.min(videoBitrate / 25, 1);
+    let offset = CIRCUMFERENCE * (1 - pct);
+    gaugeArc.style.strokeDashoffset = offset;
+
+    videoBitrateOut.textContent = videoBitrate.toFixed(1);
+    tierBadge.textContent = tierLabel;
+    statVideo.textContent = videoBitrate.toFixed(2);
+    statAudio.textContent = audioMbps.toFixed(2);
+    statTotal.textContent = total.toFixed(2);
+
+    if (platformSelect.value === 'custom'){
+      platformNote.innerHTML = platform.note;
+    } else {
+      platformNote.innerHTML = `<b>${platform.name} cap: ${platform.max} Mbps.</b> ${platform.note}` +
+        (capped ? ' Your bitrate was adjusted down to fit this platform limit.' : ' Your calculated bitrate already fits within this limit.');
+    }
+  }
+
+  function toggleFaq(el){
+    const item = el.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // ============ CLICK SPEED TEST (CPS) ============
+  const CPS_CIRC = 2 * Math.PI * 70;
+  const clickTargetBtn = document.getElementById('clickTargetBtn');
+  const cpsDurationGroup = document.getElementById('cpsDurationGroup');
+  const cpsArc = document.getElementById('cpsArc');
+  const cpsTimeLeft = document.getElementById('cpsTimeLeft');
+  const cpsTierBadge = document.getElementById('cpsTierBadge');
+  const cpsClicksEl = document.getElementById('cpsClicks');
+  const cpsScoreEl = document.getElementById('cpsScore');
+  const cpsBestEl = document.getElementById('cpsBest');
+  const cpsResetBtn = document.getElementById('cpsResetBtn');
+
+  let cpsDuration = 5;
+  let cpsClicks = 0;
+  let cpsRunning = false;
+  let cpsStartTime = 0;
+  let cpsBest = 0;
+  let cpsRAF = null;
+
+  cpsArc.style.strokeDashoffset = 0;
+  cpsTimeLeft.textContent = cpsDuration.toFixed(1);
+
+  cpsDurationGroup.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if (!chip || cpsRunning) return;
+    [...cpsDurationGroup.children].forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    cpsDuration = parseFloat(chip.dataset.time);
+    resetCps();
+  });
+
+  clickTargetBtn.addEventListener('click', () => {
+    if (!cpsRunning){
+      startCps();
+    }
+    cpsClicks++;
+    cpsClicksEl.textContent = cpsClicks;
+    const elapsed = (performance.now() - cpsStartTime) / 1000;
+    const liveCps = elapsed > 0 ? (cpsClicks / Math.min(elapsed, cpsDuration)) : 0;
+    cpsScoreEl.textContent = liveCps.toFixed(1);
+  });
+
+  function startCps(){
+    cpsRunning = true;
+    cpsClicks = 0;
+    cpsStartTime = performance.now();
+    clickTargetBtn.classList.add('pulsing');
+    cpsTierBadge.textContent = 'Go go go!';
+    cpsTick();
+  }
+
+  function cpsTick(){
+    const elapsed = (performance.now() - cpsStartTime) / 1000;
+    const remaining = Math.max(cpsDuration - elapsed, 0);
+    cpsTimeLeft.textContent = remaining.toFixed(1);
+    const pct = remaining / cpsDuration;
+    cpsArc.style.strokeDashoffset = CPS_CIRC * (1 - pct);
+
+    if (remaining <= 0){
+      finishCps();
+      return;
+    }
+    cpsRAF = requestAnimationFrame(cpsTick);
+  }
+
+  function finishCps(){
+    cpsRunning = false;
+    clickTargetBtn.classList.remove('pulsing');
+    cancelAnimationFrame(cpsRAF);
+    const finalCps = cpsClicks / cpsDuration;
+    cpsScoreEl.textContent = finalCps.toFixed(1);
+    if (finalCps > cpsBest){
+      cpsBest = finalCps;
+      cpsBestEl.textContent = cpsBest.toFixed(1);
+    }
+    let tier = 'Casual Clicker';
+    if (finalCps >= 12) tier = 'Insane — Pro Clicker 🔥';
+    else if (finalCps >= 9) tier = 'Very Fast Clicker';
+    else if (finalCps >= 7) tier = 'Fast Clicker';
+    else if (finalCps >= 4) tier = 'Average Clicker';
+    cpsTierBadge.textContent = `${finalCps.toFixed(1)} CPS — ${tier}`;
+  }
+
+  function resetCps(){
+    cpsRunning = false;
+    cancelAnimationFrame(cpsRAF);
+    clickTargetBtn.classList.remove('pulsing');
+    cpsClicks = 0;
+    cpsClicksEl.textContent = '0';
+    cpsScoreEl.textContent = '0.0';
+    cpsTimeLeft.textContent = cpsDuration.toFixed(1);
+    cpsArc.style.strokeDashoffset = 0;
+    cpsTierBadge.textContent = 'Click the button to start';
+  }
+
+  cpsResetBtn.addEventListener('click', resetCps);
+
+  // ============ MOUSE DPI CHECKER ============
+  const dpiTrackBtn = document.getElementById('dpiTrackBtn');
+  const dpiDistanceInput = document.getElementById('dpiDistance');
+  const dpiUnitSelect = document.getElementById('dpiUnit');
+  const dpiCalcBtn = document.getElementById('dpiCalcBtn');
+  const dpiPixelsEl = document.getElementById('dpiPixels');
+  const dpiResultEl = document.getElementById('dpiResult');
+  const dpiTierEl = document.getElementById('dpiTier');
+  const dpiCommonEl = document.getElementById('dpiCommon');
+  const dpiStatusEl = document.getElementById('dpiStatus');
+
+  let dpiTracking = false;
+  let dpiPixelDistance = 0;
+  const commonDpiPresets = [400, 800, 1200, 1600, 2400, 3200, 6400];
+
+  function dpiMoveHandler(e){
+    dpiPixelDistance += Math.sqrt((e.movementX || 0) ** 2 + (e.movementY || 0) ** 2);
+    dpiPixelsEl.textContent = Math.round(dpiPixelDistance);
+  }
+
+  dpiTrackBtn.addEventListener('click', () => {
+    if (!dpiTracking){
+      dpiTracking = true;
+      dpiPixelDistance = 0;
+      dpiPixelsEl.textContent = '0';
+      dpiTrackBtn.textContent = '■ Stop Tracking';
+      dpiTrackBtn.classList.add('tracking');
+      dpiStatusEl.textContent = 'Tracking...';
+      dpiTierEl.textContent = 'Move your mouse in a straight line now';
+      document.addEventListener('mousemove', dpiMoveHandler);
+    } else {
+      dpiTracking = false;
+      dpiTrackBtn.textContent = '▶ Start Tracking';
+      dpiTrackBtn.classList.remove('tracking');
+      dpiStatusEl.textContent = 'Stopped';
+      dpiTierEl.textContent = 'Now enter the real distance moved';
+      document.removeEventListener('mousemove', dpiMoveHandler);
+    }
+  });
+
+  dpiCalcBtn.addEventListener('click', () => {
+    const distRaw = parseFloat(dpiDistanceInput.value);
+    if (isNaN(distRaw) || distRaw <= 0 || dpiPixelDistance === 0){
+      dpiTierEl.textContent = 'Track movement and enter a valid distance first';
+      return;
+    }
+    const inches = dpiUnitSelect.value === 'cm' ? distRaw / 2.54 : distRaw;
+    const dpi = dpiPixelDistance / inches;
+    dpiResultEl.textContent = Math.round(dpi);
+
+    const closest = commonDpiPresets.reduce((a, b) => Math.abs(b - dpi) < Math.abs(a - dpi) ? b : a);
+    dpiCommonEl.textContent = closest;
+    dpiTierEl.textContent = `Estimated ≈ ${Math.round(dpi)} DPI`;
+  });
+
+  // init
+  calculate();
+</script>
+
+</body>
+</html>
